@@ -1414,6 +1414,9 @@ void GameLoop::loopExit()
         /* Remove savestates because they are invalid on future instances of the game */
         remove_savestates(context);
 
+        /* wait on the game process to terminate */
+        wait(nullptr);
+
         context->status = Context::RESTARTING;
         emit statusChanged();
 
@@ -1441,6 +1444,9 @@ void GameLoop::loopExit()
 
     /* Remove savestates because they are invalid on future instances of the game */
     remove_savestates(context);
+
+    /* wait on the game process to terminate */
+    wait(nullptr);
 
     context->status = Context::INACTIVE;
     emit statusChanged();
